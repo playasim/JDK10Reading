@@ -2,15 +2,16 @@
 
 ##UML图
 InputSteam本身实现了Closeable接口，Closeable接口又继承了AutoCloseable接口，其中只含有一个void close()方法，用于关闭资源，并释放与其相关的所有的潜在的资源。
+
 ![InputSteam](InputStreamUML.png)
 
-##constants
+## constants
 ```java
  private static final int MAX_SKIP_BUFFER_SIZE = 2048;
 
  private static final int DEFAULT_BUFFER_SIZE = 8192;
 ```
-##read
+## read
 InputStream.read;
 ```java
 public abstract int read() throws IOException;
@@ -51,7 +52,7 @@ public int read(byte b[], int off, int len) throws IOException {
 ```
 read(byte b[], int off, int len)可以读取从off到off + len的所有数据，并且返回bytes的数量，注意方法中首先使用Objects.requireNonNull和Objects.checkFromIndexSize检查了byte[]是否为空或者越界.可以学习一波
 
-##readAllBytes
+## readAllBytes
 InputStream.readAllBytes();
 ```java
 public byte[] readAllBytes() throws IOException {
@@ -84,7 +85,7 @@ public byte[] readAllBytes() throws IOException {
 这里首先试着读取流中的数据，如果一次读完，跳出循环，且nread一定会等于capacity；若没有，则需要进行扩容.
 这里首先判断扩为原来两倍后是否会小于MAX Size，如果是，则capacity右移；如果不是，则将capacity直接设为MAX Size，返回最新的buf。
 
-##readBytes
+## readBytes
 InputStream.readBytes(bytes[] b, int off, int len);
 ```java
 public int readNBytes(byte[] b, int off, int len) throws IOException {
@@ -103,7 +104,7 @@ public int readNBytes(byte[] b, int off, int len) throws IOException {
 
 ```
 
-##skip
+## skip
 ```java
 public long skip(long n) throws IOException {
 
@@ -129,7 +130,7 @@ public long skip(long n) throws IOException {
 ```
 skip方法可以跳过流中n个bytes的数据，使用的方法其实是把这n个byte提前read过去。返回值是真正跳过的数量。
 
-##transferTo
+## transferTo
 ```java
 public long transferTo(OutputStream out) throws IOException {
         Objects.requireNonNull(out, "out");
