@@ -1,6 +1,6 @@
-#InputSteam
+# InputSteam
 
-##UML图
+## UML图
 InputSteam本身实现了Closeable接口，Closeable接口又继承了AutoCloseable接口，其中只含有一个void close()方法，用于关闭资源，并释放与其相关的所有的潜在的资源。
 
 ![InputSteam](InputStreamUML.png)
